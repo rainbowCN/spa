@@ -24,7 +24,7 @@ A.prototype = {
     _tmpl: null,
 
     initialize: function() {        
-        this._container = $("#module");
+        this._container = $("#app");
     },
 
     _initData: function() {},
@@ -35,13 +35,30 @@ A.prototype = {
         }); 
     },
 
-    display: function() {
-        var content = 
-        '<div class="container" id="deliveryDetailPage"><header class="fixHeader"><div class="wrap_title"><i class="i_back canBack"></i><h2>物流状态更新</h2></div></header></div>';
-        
-        this._container.html(content);
+    exchange: function() {
 
-        this._bindEvent();
+    },
+
+
+    display: function() {
+
+        var self = this;
+
+        var options = {};
+
+        var callback = function() {
+
+            console.log("call callbak");
+
+            //var dataHTML = tmpl("tplModuleA", {});
+
+            //self._container.html("").html(dataHTML);
+
+            //self._bindEvent();            
+        };
+
+        $( "#app" ).effect( "bind", options, 1000, callback );
+
     }
 }
 

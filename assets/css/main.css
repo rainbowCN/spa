@@ -6,10 +6,8 @@ body {
 .module {
 	height: 100px;
 	width: 48%;
-	border-style: solid;
-	border-width: 1px;
+	border: 1px solid #eee;
 	margin: 2px;
-	background-color: royalblue;
 	display: inline-block;
 	text-align:center;
 	padding-top:40px;
