@@ -1,1 +1,3 @@
-alert("welcome to the start of J.Y");
+//alert("welcome to the start of J.Y");
+
+var app = new MainScreen();

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="mShop">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+
+	<title>起点</title>
+
+    <link href="./css/base.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet"/>
+    <link href="./css/delivery.css" rel="stylesheet"/>
+
+    <script type="application/javascript" src="./js/lib/jquery-1.10.1.min.js"></script>
+    <script type="application/javascript" src="./js/lib/tmpl.js"></script>
+
+	<script  type="application/javascript"  src="./js/main.js"></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container" id="deliveryDetailPage">
+			<header class="fixHeader">
+				<div class="wrap_title">
+	            	<i class="i_back canBack"></i>
+	                <h2>物流状态更新</h2>
+	            </div>
+		    </header>			
+			
+			<div class="scroller">
+				<div class="block_bg deliveryInfo">
+					<ul>
+						<li><i class="deliveryLogo"></i><em>快递公司</em><span>圆通速递</span></li>
+						<li><em>运单编号</em><span>34623462346</span></li>
+					</ul>
+				</div>
+
+				<div class="block_bg deliveryHistory">
+					<!--
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京装运公司 已发出</em><p>2015-03-05 19:53:43</p>
+						</div>
+					</div>	
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					<div class="deliveryHistoryItem" id="test">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:53:43</p>
+						</div>
+					</div>	
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					<div class="deliveryHistoryItem">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					<div class="deliveryHistoryItem" id="test">
+						<div class="content">
+							<em>北京</em><p>2015-03-05 19:43:43</p>
+						</div>
+					</div>
+					-->
+				</div> 				
+			</div>
+		</div>
+	</div>
+
+	<!-- 首页-运营图片模板 [Begin]-->
+	<script type="text/html" id="tplDeliveryHistory">
+    	<# for(var i=0;i<deliveryHistory.length; i++){#>
+			<div class="deliveryHistoryItem">
+				<div class="content">
+					<em><#=deliveryHistory[i].deliveryInfo#></em><p><#=deliveryHistory[i].deliveryDate#></p>
+				</div>
+			</div>	    		
+    	<#}#>
+    	<hr>
+	</script>
+
+	<script type="application/javascript">
+
+		$(document).ready(function(){
+			 
+			$(".canBack").click(function(){
+				window.history.back(-1);
+			});	
+
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				url: "/mockup/delivery-history.json",
+				success: function(data){
+					if(data.code!=0) {
+						alert("服务器开小差了!");
+						return false;
+					}
+					var deliveryHistory = data.data.deliveryInfo.deliveryData;
+					if(deliveryHistory) {
+
+				        var dataObject = {
+				        	deliveryHistory:deliveryHistory
+				        };	
+
+				    	var dataHTML = tmpl("tplDeliveryHistory", dataObject);
+
+				    	$(".deliveryHistory").html(dataHTML);	
+					}
+
+					// 特殊处理物流历史记录
+					var deliveryHisDom = $('.deliveryHistoryItem').last();
+					deliveryHisDom.children(".content").attr('style','border-bottom:0 none');
+
+				},
+				error: function(){
+					alert("服务器开小差了!");
+				}
+			}); 
+			
+		});	 		 
+	</script>
+</body>
+</html>

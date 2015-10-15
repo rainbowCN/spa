@@ -18,11 +18,10 @@
     <script type="application/javascript" src="./js/lib/jquery-1.10.1.min.js"></script>
     <script type="application/javascript" src="./js/lib/tmpl.js"></script>
 
-	<script  type="application/javascript"  src="./js/main.js"></script>
 </head>
 
-<body>
-	<div class="wrapper">
+<script type="text/html" id="tplIndex">
+	<div id="module" class="wrapper">
 		<div class="container" id="deliveryDetailPage">
 			<header class="fixHeader">
 				<div class="wrap_title">
@@ -33,117 +32,34 @@
 			
 			<div class="scroller">
 				<div class="block_bg deliveryInfo">
-					<ul>
-						<li><i class="deliveryLogo"></i><em>快递公司</em><span>圆通速递</span></li>
-						<li><em>运单编号</em><span>34623462346</span></li>
-					</ul>
+					<div class="module">
+						<a href="/index.html#A">前端技术</a>
+					</div>
+					<div class="module">
+						后端技术
+					</div>
+					<div class="module">
+						生活艺术
+					</div>
+					<div class="module">
+						最近活动
+					</div>
 				</div>
 
 				<div class="block_bg deliveryHistory">
-					<!--
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京装运公司 已发出</em><p>2015-03-05 19:53:43</p>
-						</div>
-					</div>	
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					<div class="deliveryHistoryItem" id="test">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:53:43</p>
-						</div>
-					</div>	
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					<div class="deliveryHistoryItem">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					<div class="deliveryHistoryItem" id="test">
-						<div class="content">
-							<em>北京</em><p>2015-03-05 19:43:43</p>
-						</div>
-					</div>
-					-->
+					
 				</div> 				
 			</div>
 		</div>
 	</div>
+</script>
 
-	<!-- 首页-运营图片模板 [Begin]-->
-	<script type="text/html" id="tplDeliveryHistory">
-    	<# for(var i=0;i<deliveryHistory.length; i++){#>
-			<div class="deliveryHistoryItem">
-				<div class="content">
-					<em><#=deliveryHistory[i].deliveryInfo#></em><p><#=deliveryHistory[i].deliveryDate#></p>
-				</div>
-			</div>	    		
-    	<#}#>
-    	<hr>
-	</script>
+<body id="app">
 
-	<script type="application/javascript">
-
-		$(document).ready(function(){
-			 
-			$(".canBack").click(function(){
-				window.history.back(-1);
-			});	
-
-			var request = new RequestProxy();
-			if(!request.deliveryId){
-				return false;
-			};
-
-			$.ajax({
-				type: "GET",
-				dataType: "json",
-				url: "/mockup/delivery-history.json",
-				success: function(data){
-					if(data.code!=0) {
-						alert("服务器开小差了!");
-						return false;
-					}
-					var deliveryHistory = data.data.deliveryInfo.deliveryData;
-					if(deliveryHistory) {
-
-				        var dataObject = {
-				        	deliveryHistory:deliveryHistory
-				        };	
-
-				    	var dataHTML = tmpl("tplDeliveryHistory", dataObject);
-
-				    	$(".deliveryHistory").html(dataHTML);	
-					}
-
-					// 特殊处理物流历史记录
-					var deliveryHisDom = $('.deliveryHistoryItem').last();
-					deliveryHisDom.children(".content").attr('style','border-bottom:0 none');
-
-				},
-				error: function(){
-					alert("服务器开小差了!");
-				}
-			}); 
-			
-		});	 		 
-	</script>
+	<script  type="application/javascript"  src="./js/module/A.js"></script>
+    <script  type="application/javascript"  src="./js/module/Index.js"></script>
+    <script  type="application/javascript"  src="./js/xRouter.js"></script>
+	<script  type="application/javascript"  src="./js/main.js"></script>
 </body>
+
 </html>
