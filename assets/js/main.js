@@ -1,3 +1,3 @@
 //alert("welcome to the start of J.Y");
 
-var app = new MainScreen();
+var app = new DirectorJS();

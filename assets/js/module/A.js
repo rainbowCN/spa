@@ -35,29 +35,20 @@ A.prototype = {
         }); 
     },
 
-    exchange: function() {
-
-    },
-
-
     display: function() {
 
         var self = this;
 
-        var options = {};
+        var dataHTML = tmpl("tplModuleA", {});
+
+        this._container.html(dataHTML);
 
         var callback = function() {
-
+            self._bindEvent(); 
             console.log("call callbak");
-
-            //var dataHTML = tmpl("tplModuleA", {});
-
-            //self._container.html("").html(dataHTML);
-
-            //self._bindEvent();            
         };
 
-        $( "#app" ).effect( "bind", options, 1000, callback );
+        $( ".container" ).effect( "slide", {"direction":"right"}, 400, callback );
 
     }
 }

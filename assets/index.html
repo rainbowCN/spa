@@ -15,19 +15,11 @@
 
     <link href="./css/base.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet"/>
-    <link href="./css/delivery.css" rel="stylesheet"/>
+    <link href="./css/module.css" rel="stylesheet"/>
 
     <script type="application/javascript" src="./js/lib/jquery-1.10.1.min.js"></script>
     <script type="application/javascript" src="./js/lib/tmpl.js"></script>
     <script type="application/javascript" src="./js/lib/jquery-ui.js"></script>
-
-		  <style>
-		    .toggler { width: 500px; height: 200px; position: relative; }
-		    #button { padding: .5em 1em; text-decoration: none; }
-		    #effect { width: 240px; height: 135px; padding: 0.4em; position: relative; }
-		    #effect h3 { margin: 0; padding: 0.4em; text-align: center; }
-		    .ui-effects-transfer { border: 2px dotted gray; }
-		  </style>
 		  
 </head>
 
@@ -36,38 +28,26 @@
 		<div class="container" id="deliveryDetailPage">
 			<header class="fixHeader">
 				<div class="wrap_title">
-	            	<i class="i_back canBack"></i>
-	                <h2>物流状态更新</h2>
+	                <h2>首页</h2>
 	            </div>
 		    </header>			
 			
 			<div class="scroller">
 				<div class="block_bg deliveryInfo">
 					<div class="module">
-						<a href="/index.html#A">前端技术</a>
+						<a href="/index.html#A">FED Tec.</a>
 					</div>
 					<div class="module">
-						后端技术
+						BED Tec.
 					</div>
 					<div class="module">
-						生活艺术
+						LIFE Art.
 					</div>
 					<div class="module">
-						最近活动
-										<button id="button" class="ui-state-default ui-corner-all">Run Effect</button>
+						Rel Activity.
 					</div>
 				</div>				
 			</div>
-
-			<div class="toggler">
-			  <div id="effect" class="ui-widget-content ui-corner-all">
-			    <h3 class="ui-widget-header ui-corner-all">Effect</h3>
-			    <p>
-			      Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
-			    </p>
-			  </div>
-			</div>
-
 		</div>
 	</div>
 </script>
@@ -98,48 +78,17 @@
 					</div>
 				</div>
 
-				<div class="block_bg deliveryHistory">
-					
-				</div> 				
+				<div class="block_bg deliveryHistory"></div> 				
 			</div>
 		</div>
 	</div>
 </script>
 
-<body>
-	<div id="app">
-	</div>
+<body id="app">
 	<script  type="application/javascript"  src="./js/module/A.js"></script>
     <script  type="application/javascript"  src="./js/module/Index.js"></script>
     <script  type="application/javascript"  src="./js/xRouter.js"></script>
-	<script  type="application/javascript"  src="./js/main.js"></script><script>
-		  $(function() {
-		    // run the currently selected effect
-		    function runEffect() {
-
-		      var options = {};
-		 
-		      // run the effect
-		      $( "#effect" ).effect( "blind", options, 500, callback );
-		    };
-		 
-		    // callback function to bring a hidden box back
-		    function callback() {
-		      
-		      setTimeout(function() {
-		        $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
-		      }, 1000 );
-		      
-		    };
-		 
-		    // set effect from select menu value
-		    $( "#button" ).click(function() {
-		      runEffect();
-		      return false;
-		    });
-		  });
-		  </script>    
-
+	<script  type="application/javascript"  src="./js/main.js"></script>
 </body>
 
 </html>
